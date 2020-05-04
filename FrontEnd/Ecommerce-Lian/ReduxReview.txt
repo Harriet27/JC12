@@ -1,0 +1,55 @@
+Redux bisa kasih kita pakai GLOBAL STATE.
+
+Global State = state yang bisa diakses dan diganti oleh semua komponen.
+
+Global State !== state(local) => state di class component
+
+State(local) => this.state;
+App.js => class component => this.state;
+
+<Login
+    propContoh='halo';
+/>
+Login.js => class component => this.state;
+this.props.propContoh;
+
+Akses data dari komponen lain   
+    1. Props => parent ke child
+    2. Global State => (semua komponen bisa)
+
+Redux
+    1. Reducer
+        - FUNCTION
+        - sebuah function untuk mengganti isi dari global state.
+        - ( switch case )
+        - dikasih kondisi untuk ganti global state TERGANTUNG dari parameter yang diterima
+    2. Action
+        - OBJECT
+        - Action === object
+        - Parameter yang diterima oleh reducer
+        - {
+            type : 'string',
+            payload : data
+          }
+        - Global state akan ganti tergantung dari action type yang dia terima
+    3. Action Creator
+        - FUNCTION
+        - Function yang mereturn sebuah object
+        - bikin sebuah object yang kemudian masuk ke reducer
+        - masuk ke reducer baru merubah global state
+
+    4. Thunk
+        - Middleware
+        - yang membuat frontend dan backend berkomunkasi dengan sempurna
+        - Action != object
+        - Action === function
+        - Action = {
+            type : ,
+            payload
+            }
+        - dispatch(() => {
+
+          })
+        - Thunk bisa akses lebih dari satu reducer
+        - Bisa masuk ke lebih dari satu case
+        - dispatch bisa terus menerus

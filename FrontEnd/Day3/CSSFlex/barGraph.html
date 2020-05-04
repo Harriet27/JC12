@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="barGraph.css">
+    <title>Bar Graph CSS</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="item item-1" id="1" onclick="showData()">
+            <!-- Bar1 -->
+        </div>
+        <div class="item item-2" id="2" onclick="showData()">
+            <!-- Bar2 -->
+        </div>
+        <div class="item item-3" id="3" onclick="showData()">
+            <!-- Bar3 -->
+        </div>
+        <div class="item item-4" id="4" onclick="showData()">
+            <!-- Bar4 -->
+        </div>
+        <div class="item item-5" id="5" onclick="showData()">
+            <!-- Bar5 -->
+        </div>
+    </div>
+    <br>
+    <center>
+        <input type="button" value="Click" onclick="click1()">
+        <input type="button" value="Click" onclick="click2()">
+    </center>
+
+<script>
+let arr1 = ['40%','20%','60%','30%','45%'];
+let arr2 = ['20%','70%','30%','60%','10%'];
+
+var click1 = () => {
+    for (var x = 0; x < arr1.length; x++) {
+        var h1 = document.getElementById(x+1).style.height = arr1[x];
+    }
+}
+
+var click2 = () => {
+    for (var x = 0; x < arr2.length; x++) {
+        var h1 = document.getElementById(x+1).style.height = arr2[x];
+    }
+}
+
+var showData = () => {
+    console.log(h1);
+}
+</script>
+</body>
+</html>

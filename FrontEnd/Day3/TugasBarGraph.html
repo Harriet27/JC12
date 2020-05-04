@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop~De~Loop</title>
+    <style>
+    #container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        height: 500px;
+        align-items: flex-end;
+    }
+
+    .box {
+        display: flex;
+        width: 20%;
+        height: 500px;
+        flex-direction: column;
+        justify-content: flex-end; 
+        align-items: center;
+    }
+
+    .item {
+        width: 90%;
+        height: 10%;
+        background-color: black;
+        color: white;
+        display: flex;
+        transition: 200ms;
+    }
+
+    input {
+        margin-top: 30px;
+
+    }
+
+    #button{
+        display: flex;
+        justify-content: center;
+    }
+
+    #button input[type="button"]{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="box">
+            <div class="item"></div>
+            <input type="button" value="RANDOMIZE!" onclick="randomize(0)">
+        </div>
+        <div class="box">
+            <div class="item"></div>
+            <input type="button" value="RANDOMIZE!" onclick="randomize(1)">
+        </div>
+        <div class="box">
+            <div class="item"></div>
+            <input type="button" value="RANDOMIZE!" onclick="randomize(2)">
+        </div>
+        <div class="box">
+            <div class="item"></div>
+            <input type="button" value="RANDOMIZE!" onclick="randomize(3)">
+        </div>
+        <div class="box">
+            <div class="item"></div>
+            <input type="button" value="RANDOMIZE!" onclick="randomize(4)">
+        </div>
+    </div>
+    <div id="button">
+        <input type="button" value="RANDOMIZE ALL!" onclick="randomize()">
+        <div id="loop">
+            <input type="button" value="INFINITE RANDOMIZE ALL!" onclick="infiniteLoop()">
+        </div>
+        <input type="button" value="RESET" onclick="reset()">
+    </div>
+    
+</body>
+
+<script>
+    let arr = document.getElementsByClassName('item')
+    function randomize(index){
+        if(index || index === 0){
+            let red = Math.floor(Math.random()*256)
+                let green = Math.floor(Math.random()*256)
+                let blue = Math.floor(Math.random()*256)
+                arr[index].style.height = (Math.random() * 100) + '%'
+                arr[index].style.backgroundColor = `rgb(${red}, ${green}, ${blue})`
+        }else{
+            for(i=0;i<arr.length;i++){
+                let red = Math.floor(Math.random()*256)
+                let green = Math.floor(Math.random()*256)
+                let blue = Math.floor(Math.random()*256)
+                arr[i].style.height = (Math.random() * 100) + '%'
+                arr[i].style.backgroundColor = `rgb(${red}, ${green}, ${blue})`
+            }
+        }
+    }
+
+    function reset(){
+        let arr = document.getElementsByClassName('item')
+        for(i=0;i<arr.length;i++){
+            arr[i].style.height = '10%'
+            arr[i].style.backgroundColor = `rgb(0, 0, 0)`
+        }
+    }
+
+    let loop;
+    function infiniteLoop(){
+        loop = setInterval(randomize, 200);
+        let change = document.getElementById('loop')
+        change.innerHTML = `<input type="button" value="STOP LOOP" onclick="stopLoop()">`
+    }
+    
+    function stopLoop(){
+        clearInterval(loop)
+        let change = document.getElementById('loop')
+        change.innerHTML = `<input type="button" value="INFINITE RANDOMIZE ALL!" onclick="infiniteLoop()">`
+    }
+
+    for(i=0;i<arr.length;i++){
+        let style = getComputedStyle(arr[i])
+        arr[i].addEventListener('click', function(){
+            alert(`Height: ${style.height}`)
+        })
+    }
+</script>
+</html>

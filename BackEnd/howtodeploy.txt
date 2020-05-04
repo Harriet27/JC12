@@ -1,0 +1,18 @@
+klo ada update file changes di local
+FIREBASE
+1. git add && git commit
+2. npm run build
+3. firebase deploy
+HEROKU
+1. git add && git commit
+2. git push heroku master
+
+mau buat hosting baru
+FIREBASE
+1. bikin dlu dari web firebase
+2. npm run build
+3. firebase init
+4. firebase deploy
+HEROKU
+1. heroku git:remote -a <nama app>
+2. git push heroku master

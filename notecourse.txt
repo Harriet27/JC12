@@ -1,0 +1,205 @@
+ 
+interviewing.io
+cs dojo
+
+DarkCode = untuk frontend design
+
+push untuk upload
+commit untuk initial, sebelum dipush harus di commit dl
+
+lib css:
+sweetalret2.github.io
+mdboostrap
+ant design
+
+https-status-code
+
+https://bitetoothpastebits.com/
+
+meaure css
+
+react = scrimba.com
+
+
+bit.ly/2VG7tsB
+
+GIT REVERT BUAT BALIKIN 
+----------------------------------------REACT------------------------------REACT---------------------------------
+
+INSTALL REACT.
+npm install -g create-react-app (install global)
+-buka folder untuk folder react
+-buka cmd di folder tujuan
+create-react-app nama-app
+-selesai download package
+cd nama-app
+code .
+npm start (untuk running code)
+
+
+
+untuuk navogasi harus install router dom dl
+npm install react-router-dom
+import {BrowserRouter } from "react-router-dom"; // ketik di index.css
+lalu app di bungkus dengan 
+
+<BroserRouter>
+<App/>
+</BrowserRouter>
+
+*PERHATIKAN IMPORT DAN EXPORT setiap nambah lib HARUS DI TAMBAH DI INDEXXXXXXX
+
+
+untuk lifecycle method.
+npm i axios
+
+-----------------------review
+-class componen = untuk simpen data
+	-state =variabel untuk membuat object untuk menyimpan data. bisa dimasukin array dll.
+	- di class juga bisa bikin funtion.
+
+
+
+
+-function componen = hanya untuk nampilin
+
+setState = untuk mengganti isi nilai didalam state
+props = untuk passing data/mengirim data dari parent ke childnya. props bisa memberikan function untuk childnya.
+
+pindah component(halaman) menggunakan Link/Redirect. Harus install react-router-dom.
+ path di taro di App.js. setiap halaman harus di import export.
+dalam redirect bisa setState lalu memanggilnya dengan this.props.location.state liat login dan failed.
+
+lifecycle method.
+ketika home di buka maka akan menjalankan render paling pertama.
+
+-setelah render pertama dan komponen sudah tampil maka function componenDidMount() akan jalan.(ini funtion bawaan react)
+-render akan terus jalan ketika ada perubahan.
+-jika state ada yang berubah, render akan jalan lagi untuk meng-update halamannya untuk di tampilkan, 
+	setelah di tampilkan, function componentDidUpdate akan jalan.
+
+
+Axios lib untuk ambil/contact API.
+Axio.get('url') untuk ambil data dari url tsb.
+js promises :
+.then((res)=>{ ini jika data berhasil di akses, res=responsive
+})
+.catch((err)=>{ ini jika data gagal, maka akan menampilkan errornya
+})
+
+
+
+
+REDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUXREDUX
+npm i redux react-redux
+
+redux untuk membuat global state agar bisa di akses oleh semua
+
+
+1. di file index.js
+import {  Provider  } from 'react-redux' // komponen yang dibungkus bisa akses global state.
+import {  createStore  } from 'redux' (function untuk membuat global state, tenpat untuk menyimpan global datanya(storage))
+
+2. Deklarasikan const store=createStore(Reducer); di index.js untuk membuat tempat simpen global state
+
+3. lalu ReactDOM.render harus di bungkus <Provider></Provider>
+ReactDOM.render(
+    <Provider store={store}>// store pertama merupakan properti dan {store} adalah const yang di declare diatas
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+    </Provider>
+    , document.getElementById('root'));
+
+4. Buat folder Redux di folder src, didalam folder Redux buat folder:
+	a. Action - Lalu buat index.js
+	b. Reducer - Lalu buat index.js //Kumpulan2 function untuk mengganti isi global state (kaya setState tapi untuk global state)
+	 lalu import Reducer from './Redux/Reducer' di index.js YANG DI SRC
+	(untuk penjelasan liat masing2 file)
+
+
+5. import { connect }   from 'react-redux' masukin ini ke file js yang ingin di menggunakan store kita atau bisa akses global state
+	atau function yang digunakan untuk membuat koneksi dengan global state
+.
+
+6. tulis di page yang akan meenggunakan global state, ganti exportnya
+	export default connect(null,{ Login })(LoginPage) //connect teerima 2 param, param 1 untuk ngambil data dari global state, param ke2 untuk ganti data
+
+
+SPREAD OOPERATORRRRRRR
+  case 'FETCH_DATA_FAILED':
+            return{
+               ...state,
+               productList:action.payload,
+               loading:false,
+               error:true
+            }
+
+
+
+AXIOSAXIOSAXIOSAXIOSAXIOSAXIOSAXIOSAXIOSAXIOSAXIOSAXIOSAXIOSAXIOSAXIOSAXIOSAXIOSAXIOSAXIOSAXIOSAXIOSAXIOSAXIOSAXIOS
+
+
+AXIOS
+GET
+POST
+PUT
+PUSH
+PATCH
+DELETE
+
+Fake API - JSON-Server:
+ npm i -g json-server
+
+axios
+boostrap
+react-redux
+boostrap
+react-router-dom
+reactstrap
+redux
+
+
+
+JSON
+json isinya tetep objet, atau arr of obj, dia harus dikutip(lihat penulisan
+install :
+npm i -g json-server
+
+bikin file json
+buka terminal baru, BUKA DIR JSONNYA
+terus command
+-          json-server -p 2000 ecommerce.json
+buka localhost jsonnya untuk liat datanya,
+HARUS DI STOP DL BARU DI RUN LAGI KALAU ABIS TAMBAH DATA
+
+(cara cari di addres localhost:2000/user?username=fadhy&&password=fadhy)
+
+
+
+THUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNKTHUNK
+
+-npm i redux-thunk
+
+-import ReduxThunk from 'redux-thunk' ,di index.js reactdom
+
+-tambahkan param ke 3 dari stroe dengan contoh di bawah (yg applymiddleware)
+const store=createStore(Reducer,{},applyMiddleware(ReduxThunk));
+
+pertama authAction.js
+login page
+
+kedua authAction.js
+app page
+
+-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING-HOSTING
+pake hosting heroku
+
+-npm i -g heroku
+(cari aja cara deploy)
+
+-FIREBASE-FIREBASE-FIREBASE-FIREBASE-FIREBASE-FIREBASE-FIREBASE-FIREBASE-FIREBASE-FIREBASE-FIREBASE
+
+kalo web ga pake sdk pake CLI nya aja
+harus npm run build dl biar kebundle
+baru di init dll

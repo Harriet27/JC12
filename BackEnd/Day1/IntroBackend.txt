@@ -1,0 +1,31 @@
+API
+Application Programme Interface
+
+Client (Front-end) <=> API <=> Database (Server side)
+
+API
+GET
+POST
+PATCH
+DELETE
+
+Request (req) => {
+    1. Endpoint => Alamat dari request yang diminta
+        - eg. localhost:2000/cart
+        - /cart => dipesan user
+        - /transaction => sudah dicheckout
+        - /users => data-data user
+    2. Method
+        - GET (Axios.get = ambil data)
+        - POST (Axios.post = upload data)
+        - PATCH (Axios.patch = edit data) 
+        - PUT (Axios.put = mengganti isi data beserta property)
+        - DELETE (Axios.delete = delete data)
+        
+    3. Header
+    4. data
+}
+
+JSON-server (Fake-API)
+
+npm init => untuk handle package manager
