@@ -85,10 +85,8 @@ export const Login = (username, password) => {
 };
 
 export const keepLogin = token => {
-    // console.log('keeplogin')
     return async dispatch => {
         let token = localStorage.getItem('token');
-        // console.log(token)
         try{        
             if (token) {
                 dispatch({
@@ -171,19 +169,27 @@ export const Logout = () => {
 
 export const editProfile = (token, id, form) => {
     return dispatch => {
+        let token = localStorage.getItem('token');
         try {
-            dispatch({
-                type : API_AUTH_START
-            })
-            Axios.patch(`${API_URL}/profile/edit/${id}`, form)
-            .then((res) => {
+            if (token) {
                 dispatch({
-                    type : EDIT_PROFILE
+                    type : API_AUTH_START
                 })
-                dispatch({
-                    typd : API_AUTH_SUCCESS
+                Axios.patch(`${API_URL}/profile/edit/${id}`, form)
+                .then((res) => {
+                    let { phone, address } = res.data.data;
+                    dispatch({
+                        type : EDIT_PROFILE,
+                        payload : {
+                            phone,
+                            address
+                        }
+                    })
+                    dispatch({
+                        typd : API_AUTH_SUCCESS
+                    })
                 })
-            })
+            }
         } catch (err) {
             dispatch({
                 type : API_AUTH_FAILED

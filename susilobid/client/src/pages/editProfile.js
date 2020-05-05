@@ -21,13 +21,13 @@ const EditProfile = () => {
     }
 
     const handleChange = (e) => {
-        let { phone, address } = formInput;
-        if (phone && address) {
+        // let { phone, address } = formInput;
+        // if (phone && address) {
             setFormInput({
                 ...formInput,
                 [e.target.name] : e.target.value
             });
-        }
+        // }
     }
 
     return(
