@@ -10,7 +10,8 @@ const Sandbox = () => {
   // console.log(Platform.isPad);
   // console.log(Platform.isTV);
   // console.log(Platform.isTVOS);
-  console.log(Dimensions.get('screen'));
+  // console.log(Dimensions.get('screen'));
+
   const [orientation, setOrientation] = useState('portait');
 
   const isPortrait = () => {
@@ -25,6 +26,7 @@ const Sandbox = () => {
       console.log('wah ganti landscape');
     }
   });
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>

@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {View, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import axios from 'axios';
 import {ZOMATO_KEY, ZOMATO_URL} from '../Helper/Zomato';
 import HeaderZomato from '../Component/HeaderZomato';
 import ListCategory from '../Component/ListCategory';
 import FoodCard from '../Component/FoodCard';
 
-const Latihan = () => {
+const Latihan = ({navigation: {navigate}}) => {
   const [categories, setCategories] = useState([]);
   const [meal, setMeal] = useState([]);
+
   useEffect(() => {
     fetchCategories();
     fetchMeal();
@@ -19,6 +20,7 @@ const Latihan = () => {
       'user-key': ZOMATO_KEY,
     },
   };
+
   const fetchCategories = async () => {
     try {
       let res = await axios.get(`${ZOMATO_URL}/categories`, options);
@@ -27,6 +29,7 @@ const Latihan = () => {
       console.log(err);
     }
   };
+
   const fetchMeal = async () => {
     try {
       let res = await axios.get(`${ZOMATO_URL}/collections?city_id=1`, options);
@@ -39,27 +42,37 @@ const Latihan = () => {
 
   return (
     <View style={styles.container}>
-      <HeaderZomato />
+      <HeaderZomato title="Zomato" />
       <View style={styles.categoryContainer}>
         <FlatList
+          keyExtractor={item => item.categories.id.toString()}
           contentContainerStyle={styles.listStyle}
           horizontal={true}
           data={categories}
-          renderItem={({item}) => (
-            <ListCategory
-              key={item.categories.id}
-              name={item.categories.name}
-            />
+          renderItem={({item, index}) => (
+            <TouchableOpacity
+              onPress={() =>
+                navigate('CategoryDetail', {
+                  name: item.categories.name,
+                  id: item.categories.id,
+                })
+              }>
+              <ListCategory key={index} name={item.categories.name} />
+            </TouchableOpacity>
           )}
         />
       </View>
       <View style={styles.randomContainer}>
         <FlatList
+          keyExtractor={item => item.collection.id}
+          contentContainerStyle={styles.listStyle}
+          onRefresh={() => console.log('refreshing')}
           data={meal}
+          refreshing={false}
           renderItem={({item}) => (
             <FoodCard
               image={item.collection.image_url}
-              desciption={item.collection.description}
+              description={item.collection.description}
             />
           )}
         />

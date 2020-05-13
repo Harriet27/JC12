@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {primary_colour} from '../Helper/Zomato';
 
-const HeaderZomato = () => {
+const HeaderZomato = ({title}) => {
   return (
     <View style={styles.headerContainer}>
       <Text style={styles.title}>Zomato</Text>

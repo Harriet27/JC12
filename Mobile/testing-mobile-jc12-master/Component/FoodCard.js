@@ -1,25 +1,38 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 
-const FoodCard = ({image, desciption}) => {
+const FoodCard = ({image, description}) => {
   return (
-    <View>
+    <View style={styles.cardContainer}>
       <Image
+        style={styles.cardImage}
         source={{
           uri: image,
         }}
-        style={styles.cardImage}
       />
-      <Text>{desciption}</Text>
+      <Text style={styles.text}>{description}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  cardContainer: {},
+  cardContainer: {
+    borderColor: 'black',
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignContent: 'center',
+    height: 250,
+    width: 250,
+    marginVertical: 10,
+  },
   cardImage: {
-    height: 100,
-    width: 100,
+    height: 150,
+    width: 150,
+  },
+  text: {
+    textAlign: 'center',
+    paddingTop: 5,
   },
 });
 

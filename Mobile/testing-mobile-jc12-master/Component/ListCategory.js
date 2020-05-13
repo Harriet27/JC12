@@ -1,14 +1,14 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {primary_colour} from '../Helper/Zomato';
 
 const ListCategory = ({name}) => {
   return (
-    <TouchableOpacity>
-      <View style={styles.categoryContainer}>
-        <Text style={styles.categoryText}>{name}</Text>
-      </View>
-    </TouchableOpacity>
+    // <TouchableOpacity>
+    <View style={styles.categoryContainer}>
+      <Text style={styles.categoryText}>{name}</Text>
+    </View>
+    // {/* </TouchableOpacity> */}
   );
 };
 
