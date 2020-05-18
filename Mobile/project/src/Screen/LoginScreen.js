@@ -2,14 +2,16 @@ import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Input, Icon, Button} from 'react-native-elements';
 import {WelcomeIcon} from '../Component';
-import {useDispatch} from 'react-redux';
-import {LoginAction} from '../Redux/Actions';
+import {useDispatch, useSelector} from 'react-redux';
+import {LoginAction} from '../Redux/Actions/authActions';
 
 const LoginScreen = ({navigation: {navigate}}) => {
   let [username, setUsername] = useState('');
   let [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth);
+  console.log(auth);
 
   return (
     <View style={styles.container}>
@@ -33,13 +35,15 @@ const LoginScreen = ({navigation: {navigate}}) => {
         title="Login"
         containerStyle={styles.buttonStyle}
         buttonStyle={styles.buttonColor}
-        onPress={() => dispatch(LoginAction(username, password))}
+        onPress={() => dispatch(LoginAction({username, password}))}
+        loading={auth.loading}
       />
       <Button
         title="To Register"
         containerStyle={styles.buttonStyle}
         buttonStyle={styles.buttonColor}
         onPress={() => navigate('Register')}
+        loading={auth.loading}
       />
     </View>
   );

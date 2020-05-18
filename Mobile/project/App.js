@@ -8,7 +8,6 @@
 
 import React from 'react';
 import {Provider} from 'react-redux';
-import {NavigationContainer} from '@react-navigation/native';
 import MainNavigation from './src/Navigation/MainNavigation';
 import {createStore, applyMiddleware} from 'redux';
 import Thunk from 'redux-thunk';
@@ -19,9 +18,7 @@ const store = createStore(reducer, {}, applyMiddleware(Thunk));
 const App = () => {
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <MainNavigation />
-      </NavigationContainer>
+      <MainNavigation />
     </Provider>
   );
 };

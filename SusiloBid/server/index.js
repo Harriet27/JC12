@@ -55,12 +55,14 @@ const {
     authRouter,
     manageUserRouter,
     manageSellerRouter,
-    setBiddingRouter
+    setBiddingRouter,
+    walletRouter,
 } = require('./router');
 
 app.use('/users', authRouter);
 app.use('/manage-users', manageUserRouter);
 app.use('/manage-sellers', manageSellerRouter);
 app.use('/set-bidding-room', setBiddingRouter);
+app.use('/wallet', walletRouter);
 
 http.listen(port, () => console.log(`API active at port ${port}`));

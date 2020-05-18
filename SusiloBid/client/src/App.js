@@ -17,7 +17,8 @@ import {
   Register,
   Admin,
   Verify,
-  NotFound
+  NotFound,
+  Wallet,
 } from './pages';
 import Header from './components/Header';
 
@@ -52,6 +53,7 @@ const App = () => {
         <Route path = '/' component = {Home} exact />
         <Route path = '/register' component = {Register} />
         <Route path = '/verify' component = {Verify} />
+        <Route path = '/wallet' component = {Wallet} />
         {
           role === 1
           ?

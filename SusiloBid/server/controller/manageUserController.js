@@ -11,6 +11,7 @@ module.exports = {
             email, 
             address, 
             phone, 
+            wallet, 
             status 
         FROM users WHERE role_id = 2
         LIMIT ${limit} OFFSET ${offset}`;

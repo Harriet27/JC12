@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Alert} from 'react-native';
 import {Input, Icon, Button} from 'react-native-elements';
 import {WelcomeIcon} from '../Component';
-import {useDispatch} from 'react-redux';
-import {RegisterAction} from '../Redux/Actions';
+import {useDispatch, useSelector} from 'react-redux';
+import {RegisterAction} from '../Redux/Actions/authActions';
 
 const RegisterScreeen = ({navigation: {navigate}}) => {
   let [username, setUsername] = useState('');
@@ -12,6 +12,31 @@ const RegisterScreeen = ({navigation: {navigate}}) => {
   let [confirmPassword, setConfirmPassword] = useState('');
 
   const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth);
+  console.log(auth);
+
+  const handleRegister = () => {
+    if (username && email && password && confirmPassword) {
+      if (password === confirmPassword) {
+        console.log('password');
+        dispatch(RegisterAction({username, email, password}));
+      } else {
+        Alert.alert('Error', 'Invalid Password', [
+          {
+            text: 'OK',
+            onPress: () => console.log('close alert'),
+          },
+        ]);
+      }
+    } else {
+      Alert.alert('Error', 'Please Fill in all the forms', [
+        {
+          text: 'OK',
+          onPress: () => console.log('close alert'),
+        },
+      ]);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -28,7 +53,7 @@ const RegisterScreeen = ({navigation: {navigate}}) => {
         style={styles.textInput}
         value={email}
         onChangeText={e => setEmail(e)}
-        rightIcon={<Icon name="lock" size={30} color="skyblue" />}
+        rightIcon={<Icon name="mail" size={30} color="skyblue" />}
       />
       <Input
         secureTextEntry={true}
@@ -50,13 +75,15 @@ const RegisterScreeen = ({navigation: {navigate}}) => {
         title="Register"
         containerStyle={styles.buttonStyle}
         buttonStyle={styles.buttonColor}
-        onPress={() => dispatch(RegisterAction(username, password, email))}
+        onPress={handleRegister}
+        loading={auth.loading}
       />
       <Button
         title="To Login"
         containerStyle={styles.buttonStyle}
         buttonStyle={styles.buttonColor}
         onPress={() => navigate('Login')}
+        loading={auth.loading}
       />
     </View>
   );

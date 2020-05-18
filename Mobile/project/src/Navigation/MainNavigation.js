@@ -1,16 +1,46 @@
-import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import {LoginScreen, RegisterScreen} from '../Screen';
-
-const Stack = createStackNavigator();
+import React, {useEffect} from 'react';
+import {useState} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import AuthStack from './AuthStack';
+import {ActivityIndicator} from 'react-native';
+import Center from '../Support/Helper/Center';
+import {useSelector, useDispatch} from 'react-redux';
+import TabNav from './TabNav';
+import AsyncStorage from '@react-native-community/async-storage';
+import {keepLogin} from '../Redux/Actions/authActions';
 
 const MainNavigation = () => {
+  let [loading, setLoading] = useState(true);
+
+  let username = useSelector(state => state.auth.username);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    AsyncStorage.getItem('token')
+      .then(res => {
+        dispatch(keepLogin(res));
+        setLoading(false);
+      })
+      .catch(err => {
+        console.log(err, 'err');
+        setLoading(false);
+      });
+  }, [dispatch]);
+
+  let loadingState = useSelector(state => state.auth.loading);
+
+  if (loading && loadingState && username) {
+    return (
+      <Center>
+        <ActivityIndicator size="large" />
+      </Center>
+    );
+  }
   return (
-    <Stack.Navigator initialRouteName="Login" headerMode="none">
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="Register" component={RegisterScreen} />
-      {/* <Stack.Screen name="MainScreen" /> */}
-    </Stack.Navigator>
+    <NavigationContainer>
+      {username ? <TabNav /> : <AuthStack />}
+    </NavigationContainer>
   );
 };
 

@@ -69,7 +69,7 @@ export const BanUser = id => {
                 type : API_AUTH_START
             });
             let res = await Axios.post(`${API_URL}/manage-users/ban-users/${id}`);
-            // console.log(res.data)
+            console.log(res.data)
             dispatch({
                 type : BAN_USER,
                 payload : res.data

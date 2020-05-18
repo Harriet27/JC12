@@ -4,6 +4,7 @@ import Admin from './Admin';
 import Verify from './Verify';
 import NotFound from './NotFound';
 import BiddingPage from './BiddingPage';
+import Wallet from './Wallet';
 
 export {
     Home,
@@ -11,5 +12,6 @@ export {
     Admin,
     Verify,
     NotFound,
-    BiddingPage
+    BiddingPage,
+    Wallet,
 };

@@ -35,7 +35,7 @@ const App = () => {
                 <HeaderDashboard />
                 <Layout style={{ minHeight: "80vh" }}>
                     <SiderDashboard handleClick={handleMenuClick} />
-                    <Layout>
+                    <Layout style={{marginRight: "20px"}}>
                         <Content>{components[render]}</Content>
                     </Layout>
                 </Layout>

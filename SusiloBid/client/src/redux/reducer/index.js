@@ -5,6 +5,7 @@ import { userReducer } from './userReducer';
 import { sellerReducer } from './SellerReducer';
 import { checkStatusReducer } from './CheckStatusReducer';
 import { setBidding } from './SetBiddingReducer';
+import { WalletReducer } from './WalletReducer';
 
 export default combineReducers({
     auth : authReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
     user : userReducer,
     seller : sellerReducer,
     status : checkStatusReducer,
-    setBidding
+    setBidding,
+    wallet : WalletReducer,
 });

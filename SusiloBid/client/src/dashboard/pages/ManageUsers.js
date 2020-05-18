@@ -100,20 +100,20 @@ const ManageUsers = () => {
                 <Button variant="danger" onClick={() => handleBan(val.user_id, val.email)}>
                   {
                     loading
-                      ?
-                      <Loader type="Circles" color="#009C95" height={20} width={20} />
-                      :
-                      'Ban'
+                    ?
+                    <Loader type="Circles" color="#009C95" height={20} width={20} />
+                    :
+                    'Ban'
                   }
                 </Button>
                 :
                 <Button variant="primary" onClick={() => handleUnban(val.user_id, val.email)}>
                   {
                     loading
-                      ?
-                      <Loader type="Circles" color="#009C95" height={20} width={20} />
-                      :
-                      'Unban'
+                    ?
+                    <Loader type="Circles" color="#009C95" height={20} width={20} />
+                    :
+                    'Unban'
                   }
                 </Button>
             }
@@ -152,10 +152,10 @@ const ManageUsers = () => {
           <tbody class="">
             {
               loading
-                ?
-                <Loader type="Circles" color="#009C95" height={20} width={20} />
-                :
-                renderTable()
+              ?
+              <Loader type="Circles" color="#009C95" height={20} width={20} />
+              :
+              renderTable()
             }
           </tbody>
         </table>

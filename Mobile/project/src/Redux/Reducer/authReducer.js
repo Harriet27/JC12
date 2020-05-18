@@ -1,4 +1,4 @@
-import {AUTH_SUCCESS, AUTH_FAILED, AUTH_START} from '../types';
+import {AUTH_SUCCESS, AUTH_FAILED, AUTH_START, AUTH_LOG_OUT} from '../types';
 
 const INITIAL_STATE = {
   id: 0,
@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   email: '',
   password: '',
   verified: '',
+  displayPicture: '',
   loading: false,
   error: '',
 };
@@ -30,6 +31,8 @@ export const authReducer = (state = INITIAL_STATE, action) => {
         loading: false,
         error: action.payload,
       };
+    case AUTH_LOG_OUT:
+      return INITIAL_STATE;
     default:
       return state;
   }
