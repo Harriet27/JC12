@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GetAllUsers } from '../../redux/action';
 
 const WalletVerif = () => {
+
     const dispatch = useDispatch();
 
     const fetchUser = useSelector(({ user }) => user.data);
@@ -27,9 +28,9 @@ const WalletVerif = () => {
         });
     };
 
-    return ( 
+    return (
         <div>
-            <table class="ui single line table" style={s.tableStyle}>
+            <table class="ui single line table" style={styles.tableStyle}>
                 <thead>
                     <tr>
                         <th>User ID</th>
@@ -48,7 +49,7 @@ const WalletVerif = () => {
     );
 };
 
-const s = {
+const styles = {
     tableStyle: {
         marginTop: '25px',
         marginLeft: '25px',

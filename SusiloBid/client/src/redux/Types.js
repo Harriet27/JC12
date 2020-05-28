@@ -29,4 +29,5 @@ export const API_START = 'API_START';
 export const API_SUCCESS = 'API_SUCCESS';
 export const API_FAILED = 'API_FAILED';
 
-export const WALLET_UPDATE = 'WALLET_UPDATE';
+export const WALLET_USER = 'WALLET_UPDATE';
+export const WALLET_TOP_UP = 'WALLET_TOP_UP';

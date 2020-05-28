@@ -1,29 +1,21 @@
 import React, {useState} from 'react';
-import {View, Text, Image, StyleSheet, TextInput} from 'react-native';
+import {View, Image, StyleSheet, TextInput, ScrollView} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import {Button} from 'react-native-elements';
 import {useDispatch, useSelector} from 'react-redux';
-import {Header, Body, Title} from 'native-base';
 import {uploadAction} from '../Redux/Actions/todoActions';
+import {TabActions} from '@react-navigation/native';
+import {HeaderWoIcon} from '../Component';
 
-const PostHeader = () => {
-  return (
-    <Header>
-      <Body>
-        <Title>Post</Title>
-      </Body>
-    </Header>
-  );
-};
+const PostTab = ({navigation: {dispatch}}) => {
+  const dispatchAction = useDispatch();
 
-const PostTab = () => {
   const [postPhoto, setPostPhoto] = useState(null);
   const [caption, setCaption] = useState('');
 
   const id = useSelector(state => state.auth.id);
   const loading = useSelector(state => state.todo.loading);
-
-  const dispatch = useDispatch();
+  const error = useSelector(state => state.todo.error);
 
   const handleGallery = async () => {
     try {
@@ -34,7 +26,6 @@ const PostTab = () => {
         mediaType: 'photo',
       });
       setPostPhoto(response);
-      console.log(postPhoto);
     } catch (err) {
       console.log(err);
     }
@@ -49,52 +40,72 @@ const PostTab = () => {
         mediaType: 'photo',
       });
       setPostPhoto(response);
-      console.log(postPhoto);
     } catch (err) {
       console.log(err);
     }
   };
 
+  const handleUpload = () => {
+    dispatchAction(uploadAction({postPhoto, caption, id}));
+    if (!error) {
+      setPostPhoto({});
+      setCaption('');
+      dispatch(TabActions.jumpTo('Feed'));
+    }
+  };
+
   return (
-    <View>
-      <PostHeader />
-      <View>
-        <Text>Post</Text>
+    <ScrollView style={styles.container}>
+      <HeaderWoIcon title="Post" />
+      <View style={styles.imageContainer}>
         <Image
           source={{uri: postPhoto ? postPhoto.path : null}}
           style={styles.imageStyle}
+          // style={{height: postPhoto ? 400 : 0, width: postPhoto ? 400 : 0}}
         />
         <TextInput
-          placeholder="Caption"
+          placeholder="Caption..."
           onChangeText={e => setCaption(e)}
           value={caption}
         />
-        <View>
-          <Button
-            title="Open Gallery"
-            onPress={handleGallery}
-            buttonStyle={styles.buttonStyle}
-            loading={loading}
-          />
-          <Button
-            title="Open Camera"
-            onPress={handleCamera}
-            buttonStyle={styles.buttonStyle}
-            loading={loading}
-          />
-          <Button
-            title="Upload"
-            onPress={() => dispatch(uploadAction({postPhoto, caption, id}))}
-            buttonStyle={styles.buttonStyle}
-            loading={loading}
-          />
-        </View>
       </View>
-    </View>
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Open Gallery"
+          onPress={handleGallery}
+          buttonStyle={styles.buttonStyle}
+          loading={loading}
+        />
+        <Button
+          title="Open Camera"
+          onPress={handleCamera}
+          buttonStyle={styles.buttonStyle}
+          loading={loading}
+        />
+        <Button
+          title="Upload"
+          onPress={handleUpload}
+          buttonStyle={styles.buttonStyle}
+          loading={loading}
+        />
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  imageContainer: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
   imageStyle: {
     height: 400,
     width: 400,

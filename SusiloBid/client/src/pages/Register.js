@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom'
-
-// redux
+import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Register } from '../redux/action';
-
-// style
 import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react';
 import Loader from 'react-loader-spinner';
 
@@ -34,7 +30,6 @@ const RegisterPage = () => {
         });
         let pass = e.target.value;
         let validateNum = /[0-9]/;
-        // console.log(valNumber.test(pass))
         setNumber(validateNum.test(pass));
         setLength(pass.length > 7);
     };
@@ -49,7 +44,7 @@ const RegisterPage = () => {
                         email,
                         password,
                         address,
-                        phone
+                        phone,
                     })
                 );
             } else {
@@ -65,7 +60,6 @@ const RegisterPage = () => {
             <Redirect to='/'/>
         );
     };
-
     return (
         <Grid textAlign='center' style={{ height: '75vh' }} verticalAlign='middle'>
             <Grid.Column style={{ maxWidth: 550 }}>

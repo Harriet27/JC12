@@ -4,7 +4,7 @@ import Center from '../Support/Helper/Center';
 import {fetchTodo} from '../Redux/Actions/todoActions';
 import {ActivityIndicator, FlatList, View} from 'react-native';
 import PostCard from '../Component/PostCard';
-import FeedHeader from '../Component/FeedHeader';
+import {HeaderWoIcon} from '../Component';
 
 const FeedTab = () => {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const FeedTab = () => {
   return (
     <View>
       <FlatList
-        ListHeaderComponent={FeedHeader}
+        ListHeaderComponent={() => <HeaderWoIcon title="Feed" />}
         refreshing={loading}
         onRefresh={() => dispatch(fetchTodo())}
         keyExtractor={item => item.id.toString()}

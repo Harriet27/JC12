@@ -1,4 +1,4 @@
-import {AUTH_SUCCESS, AUTH_FAILED, AUTH_START, AUTH_LOG_OUT} from '../types';
+import {AUTH_SUCCESS, AUTH_FAILED, AUTH_START, AUTH_LOG_OUT, AUTH_CHANGE_SUCCESS} from '../types';
 
 const INITIAL_STATE = {
   id: 0,
@@ -23,6 +23,11 @@ export const authReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         ...action.payload,
+        loading: false,
+      };
+    case AUTH_CHANGE_SUCCESS:
+      return {
+        ...state,
         loading: false,
       };
     case AUTH_FAILED:

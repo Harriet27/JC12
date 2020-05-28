@@ -6,6 +6,7 @@ import {
   UPLOAD_SUCCESS,
   FETCH_PROFILE_FEED,
   UPLOAD_FAILED,
+  INIT_DATALIST,
 } from '../types';
 
 const INITIAL_STATE = {
@@ -56,6 +57,8 @@ export const todoReducer = (state = INITIAL_STATE, action) => {
         loading: false,
         error: action.payload,
       };
+    case INIT_DATALIST:
+      return INITIAL_STATE;
     default:
       return state;
   }

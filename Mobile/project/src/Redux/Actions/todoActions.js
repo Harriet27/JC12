@@ -9,6 +9,7 @@ import {
   FETCH_PROFILE_FEED,
 } from '../types';
 import {API_URL} from '../../Support/API_URL';
+import {Platform} from 'react-native';
 
 export const fetchTodo = () => {
   return async dispatch => {
@@ -37,21 +38,24 @@ export const uploadAction = ({postPhoto, caption, id}) => {
       type: UPLOAD_START,
     });
     try {
-      const headers = {
+      const options = {
         headers: {
           'Content-type': 'multipart/form-data',
         },
       };
-      const formData = new FormData();
+      const data = new FormData();
+      const uri =
+        Platform.OS === 'android'
+          ? postPhoto.path
+          : postPhoto.replace('file://', '');
       const image = {
-        uri: postPhoto.patch,
-        type: 'image.jpeg',
+        uri,
+        type: 'image/jpeg',
         name: 'post.jpg',
       };
-      // formData.append('image', image);
-      formData.append('image', postPhoto);
-      formData.append('todo', caption);
-      await Axios.post(`${API_URL}/todo/add-todo/${id}`, formData, headers);
+      data.append('image', image);
+      data.append('todo', caption);
+      await Axios.post(`${API_URL}/todo/add-todo/${id}`, data, options);
       dispatch({
         type: UPLOAD_SUCCESS,
       });

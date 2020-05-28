@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -6,19 +6,23 @@ import {
   Image,
   Button,
   ActivityIndicator,
+  TouchableOpacity,
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {API_URL} from '../Support/API_URL';
 import {loadProfileFeed} from '../Redux/Actions/todoActions';
 import {FlatList} from 'react-native-gesture-handler';
 import Center from '../Support/Helper/Center';
+import {HeaderIcon} from '../Component';
+import EditModal from '../Component/EditModal';
 
-const ProfileFeed = () => {
+const ProfileFeed = ({navigation}) => {
   const dispatch = useDispatch();
 
   const {username, displayPicture, id} = useSelector(state => state.auth);
   const {profileDataList, loading} = useSelector(({todo}) => todo);
-  console.log(profileDataList);
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     dispatch(loadProfileFeed(id));
@@ -26,16 +30,27 @@ const ProfileFeed = () => {
 
   return (
     <View style={s.container}>
+      <EditModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
+      <HeaderIcon title="Profile" toggle={navigation} />
       <View style={s.profileContainer}>
-        <Image
-          source={{uri: `${API_URL}/${displayPicture}`}}
-          style={s.displayPicture}
-        />
+        <TouchableOpacity onPress={() => setModalVisible(true)}>
+          <Image
+            source={{uri: `${API_URL}/${displayPicture}`}}
+            style={s.displayPicture}
+          />
+        </TouchableOpacity>
         <Text style={s.username}>{username}</Text>
-        <Button title="Edit Profile" />
+        <Button
+          title="Edit Profile"
+          onPress={() => navigation.navigate('EditProfile')}
+        />
       </View>
       <View style={s.feedContainer}>
-        {profileDataList.length === 0 ? (
+        {/* {profileDataList.length === 0 ? ( */}
+        {loading ? (
           <Center>
             <ActivityIndicator size="large" />
           </Center>

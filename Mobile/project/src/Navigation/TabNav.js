@@ -1,7 +1,7 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Icon} from 'react-native-elements';
-import {FeedTab, PostTab /*, ProfileFeed */} from '../Screen';
+import {FeedTab, PostTab} from '../Screen';
 import ProfileDrawer from './ProfileDrawer';
 
 const Tab = createBottomTabNavigator();
@@ -28,7 +28,6 @@ const TabNav = () => {
       <Tab.Screen name="Feed" component={FeedTab} />
       <Tab.Screen name="Post" component={PostTab} />
       <Tab.Screen name="Profile" component={ProfileDrawer} />
-      {/* <Tab.Screen name="Profile" component={ProfileFeed} /> */}
     </Tab.Navigator>
   );
 };

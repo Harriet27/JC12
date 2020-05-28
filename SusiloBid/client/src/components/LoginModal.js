@@ -51,7 +51,7 @@ const LoginModal = props => {
                     </Header>
                     <Form size='large'>
                       <Segment stacked>
-                        <Form.Input fluid icon='user' iconPosition='left' name='username' placeholder='Username'      onChange={handleChange} />
+                        <Form.Input fluid icon='user' iconPosition='left' name='username' placeholder='Username' onChange={handleChange} />
                         <Form.Input
                           fluid
                           icon='lock'

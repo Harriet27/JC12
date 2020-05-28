@@ -45,6 +45,9 @@ const ProfileModal = props => {
                             <p style={{ color:'#939393' }}>0 Rp</p>
                         </Col>
                         <Col xs={12} md={12} className='mt-3'>
+                            <Link to='/wallet' style={{ textDecoration:'none', color:'#939393' }}><p>Top Up</p></Link>
+                        </Col>
+                        <Col xs={12} md={12} className='mt-3'>
                             <Link style={{ textDecoration:'none', color:'#939393' }}><p>Edit Profile</p></Link>
                         </Col>
                         <Col xs={12} md={12} className='mt-3'>

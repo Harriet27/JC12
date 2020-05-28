@@ -19,6 +19,7 @@ const MainNavigation = () => {
   useEffect(() => {
     AsyncStorage.getItem('token')
       .then(res => {
+        console.log(res);
         dispatch(keepLogin(res));
         setLoading(false);
       })
