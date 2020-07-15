@@ -16,3 +16,15 @@ FIREBASE
 HEROKU
 1. heroku git:remote -a <nama app>
 2. git push heroku master
+
+FIREBASE
+--- firebase init ---
+Features: Database and Hosting
+Select project: Use an existing project
+Project: Project yg barusan create di firebase
+Database setup: database.rules.json
+Public directory?: build
+Config as single-page app: Yes
+File index/build.html overwrite?: No
+--- firebase deploy ---
+*Done*

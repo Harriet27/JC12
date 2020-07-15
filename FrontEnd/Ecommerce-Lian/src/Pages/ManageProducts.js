@@ -151,7 +151,6 @@ class ManageProduct extends Component {
         let price = parseInt(this.price.value);
         let category = this.category.value;
         let image = this.image.value;
-
         let productData = {
             name : namaProduk, 
             brand, 
@@ -159,7 +158,6 @@ class ManageProduct extends Component {
             category, 
             image
         }
-
         Axios.post(`${API_URL}/products`, productData)
         .then((res) => {
             console.log(res.data)

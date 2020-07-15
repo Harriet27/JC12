@@ -1,0 +1,23 @@
+REDUX
+npm i redux react-redux @reduxjs/toolkit
+
+NAVIGATION
+npm install @react-navigation/native
+
+npm install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
+
+npm install @react-navigation/bottom-tabs @react-navigation/drawer @react-navigation/stack
+
+FAKER
+npm i faker
+
+AXIOS
+npm intall axios
+
+--Bikin Main Navigation > export ke app.js
+
+--di terminal pasang dependency buat elemet
+
+npm i react-native-elements native-base react-native-vector-icons
+kalo udah "react-native link"
+terus "react-native link react-native-vector-icons"
