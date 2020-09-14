@@ -87,5 +87,5 @@ const mapStatetoProps = ({product}) => {
         brands : product.brands
     }
 }
- 
+
 export default connect(mapStatetoProps, { fetchProduct })(ProductsPage);
