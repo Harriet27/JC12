@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import reducer from './Redux/Reducer'
 import { BrowserRouter } from 'react-router-dom';
 import ReduxThunk from 'redux-thunk';
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit';
 
 const store = configureStore({
     reducer,
